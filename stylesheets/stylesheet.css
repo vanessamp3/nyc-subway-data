@@ -125,6 +125,11 @@ footer a {
   text-decoration: underline;
 }
 
+sup {
+  font-size:xx-small;
+  vertical-align:super;
+}
+
 em {
   font-style: italic;
 }
