@@ -19,7 +19,7 @@
           <a id="forkme_banner" href="https://github.com/vanessamp3/nyc-subway-data">View on GitHub</a>
 
           <h1 id="project_title">NYC Subway Data</h1>
-          <h2 id="project_tagline">An analysis of the NYC Subway Data for a project in Udacity&#39;s Nanodegree.</h2>
+          <h2 id="project_tagline">An analysis of the NYC Subway Data.</h2>
 
         </header>
     </div>
@@ -30,7 +30,9 @@
         <h2>
 <a id="statistical-test" class="anchor" href="#statistical-test" aria-hidden="true"><span class="octicon octicon-link"></span></a>Statistical Test</h2>
 
-<p>To compare whether there is a statistical difference in the number of entries into the NYC subway when it is raining and when it is not raining, we can use the Mann Whitney U Test. This test is non-parametric and does not assume we have normally-distributed data. By running a test of normality (scipy.stats.mstats.normal), I found that the data is not normally-distributed, so this test would be more appropriate than Welch’s t-test.</p>
+<p>To compare whether there is a statistical difference in the number of entries into the NYC subway when it is raining and when it is not raining, we can use the Mann Whitney U Test.
+This test is non-parametric and does not assume we have normally-distributed data. By running a test of normality (scipy.stats.mstats.normal), I found that the data is not
+normally-distributed, so this test would be more appropriate than Welch’s t-test.</p>
 
 <p>We should use a two-tailed test, because we would like to consider the possibility that there could be more or less entries when it is raining compared to not raining.</p>
 
@@ -40,7 +42,23 @@
 
 <p>We can determine from the mean number of entries that there are more people entering the subway when it is raining compared to not raining.</p>
 
-<p><img src="images/MannWhitneyTable.png" width="200" height="85" alt="Mean Entries to NYC Subway when Raining and Not Raining"></p>
+<p><center></center><img src="images/MannWhitneyTable.png" width="400" height="200" alt="Mean Entries to NYC Subway when Raining and Not Raining"></center></p>
+
+
+<h2>
+<a id="regression" class="anchor" href="#regression" aria-hidden="true"><span class="octicon octicon-link"></span></a>Regression</h2>
+
+<p>I used OLS using statsmodels for my regression model.</p>
+
+<p>The table below outlines the features I used, whether or not I dummy coded them (because they were a categorical variable), and their coefficient (if not dummy coded) in the model.</p>
+
+<p><center></center><img src="images/regressiontable.png" width="400" height="400" alt="Features Used in OLS Analysis"></center></p>
+
+<p>I started with hour and unit, because I figured that the busiest times in the subway would be during commute hours and that certain subway stations would just be busier overall
+compared to others. My R<sup>2</sup> value was 0.458836. I then decided to add a constant, and it slightly improved my R<sup>2</sup> value to 0.458883. Then I added “conds” because I presumed people ride the
+subway more when weather conditions are poor, “day_week” because there are probably more riders during Mon-Fri, and finally “tempi” because more people probably ride when temperatures are colder.
+</p>
+
       </section>
     </div>
 
