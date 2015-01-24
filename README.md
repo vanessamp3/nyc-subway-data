@@ -1,2 +1,4 @@
 # nyc-subway-data
-I analyzed the NYC Subway Data for a project in Udacity's Nanodegree.
+Created By: Vanessa Palzes
+Date: 1/24/2014
+An Analysis of the NYC Subway Dataset for Udacity's Nanodegree.
