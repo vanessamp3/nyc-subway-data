@@ -19,7 +19,7 @@
           <a id="forkme_banner" href="https://github.com/vanessamp3/nyc-subway-data">View on GitHub</a>
 
           <h1 id="project_title">NYC Subway Data</h1>
-          <h2 id="project_tagline">An analysis of the NYC Subway Data.</h2>
+          <h2 id="project_tagline">An analysis of the NYC Subway Data</h2>
 
         </header>
     </div>
@@ -27,81 +27,93 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h2>
-<a id="statistical-test" class="anchor" href="#statistical-test" aria-hidden="true"><span class="octicon octicon-link"></span></a>Statistical Test</h2>
+      
+      
+      <h2>
+      <a id="overview" class="anchor" href="#overview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overview</h2>
 
-<p>To compare whether there is a statistical difference in the number of entries into the NYC subway when it is raining and when it is not raining, we can use the Mann-Whitney U Test.
-This test is non-parametric and does not assume we have normally-distributed data. By running a test of normality (scipy.stats.mstats.normal), I found that the data is not
-normally-distributed, so this test would be more appropriate than Welch’s t-test.</p>
+        <p>Data can provide insights into the behaviors of people and how they may use public transportation. <a href="http://datamine.mta.info/">MTA</a> provides an abundance of data
+        that can be mined to answer all types of interesting questions. As part of Udacity's Data Analyst Nanodegree, I was asked to look at a subset of this data along with weather
+        reports from <a href="http://www.wunderground.com/">Wunderground</a></p> to determine if there are more people who ride the NYC subway when it is raining versus when it is not.</p>
+        
+        <p>The dataset that I used included 16 features and 42,649 data points collected from 5/1/2011 to 5/31/2011 at 240 turnstile units.</p>
+      
+      
+      <h2>
+      <a id="statistical-test" class="anchor" href="#statistical-test" aria-hidden="true"><span class="octicon octicon-link"></span></a>Statistical Test</h2>
 
-<p>We should use a two-tailed test, because we would like to consider the possibility that there could be more or less entries when it is raining compared to not raining.</p>
+        <p>To compare whether there is a statistical difference in the number of entries into the NYC subway when it is raining and when it is not raining, we can use the Mann-Whitney U Test.
+        This test is non-parametric and does not assume we have normally-distributed data. By running a test of normality (scipy.stats.mstats.normal), I found that the data is not
+        normally-distributed, so this test would be more appropriate than Welch’s t-test.</p>
 
-<p>The null hypothesis is that the two populations are the same.</p>
+        <p>We should use a two-tailed test, because we would like to consider the possibility that there could be more or less entries when it is raining compared to not raining.</p>
 
-<p>We can reject the null hypothesis, because our p-critical value (for a two-tailed test) is &lt; 0.05. This means that the two populations are significantly different.</p>
+        <p>The null hypothesis is that the two populations are the same.</p>
 
-<p>We can determine from the mean number of entries that there are more people entering the subway when it is raining compared to not raining.</p>
+        <p>We can reject the null hypothesis, because our p-critical value (for a two-tailed test) is &lt; 0.05. This means that the two populations are significantly different.</p>
 
-<p><center><img src="images/MannWhitneyTable.png" width="375" height="90" alt="Mean Entries to NYC Subway when Raining and Not Raining"></center></p>
+        <p>We can determine from the mean number of entries that there are more people entering the subway when it is raining compared to not raining.</p>
 
-
-<h2>
-<a id="regression" class="anchor" href="#regression" aria-hidden="true"><span class="octicon octicon-link"></span></a>Regression</h2>
-
-<p>I used OLS using statsmodels for my regression model.</p>
-
-<p>The table below outlines the features I used, whether or not I dummy coded them (because they were a categorical variable), and their coefficient (if not dummy coded) in the model.</p>
-
-<p><center><img src="images/regressiontable.png" width="475" height="175" alt="Features Used in OLS Analysis"></center></p>
-
-<p>I started with hour and unit, because I figured that the busiest times in the subway would be during commute hours and that certain subway stations would just be busier overall 
-compared to others. My R<sup>2</sup> value was 0.458836. I then decided to add a constant, and it slightly improved my R<sup>2</sup> value to 0.458883. Then I added “conds” because I presumed people ride the 
-subway more when weather conditions are poor, “day_week” because there are probably more riders during Mon-Fri, and finally “tempi” because more people probably ride when temperatures are colder.
-</p>
-
-<p>The R<sup>2</sup> is a statistic measure of how well the regression line approximates the real data points. The value can range from 0 to 1, with 1 meaning the line perfectly fits the data.
-My final model’s R<sup>2</sup> value was 0.487902, which means it is accounting for 48.7% of the data’s variance, and probably pretty reasonable for this dataset.</p>
-
-<p>By looking at a plot of the residuals, we see that the residuals are pretty normally distributed, meaning that the model predicted values higher and lower than actual with equal probability.</p>
-
-<p><center><img src="images/residualplot.png" width="400" height="300" alt="Plot of the Residuals"></center></p>
+        <p><center><img src="images/MannWhitneyTable.png" width="375" height="90" alt="Mean Entries to NYC Subway when Raining and Not Raining"></center></p>
 
 
-<h2>
-<a id="visualization" class="anchor" href="#visualization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Visualization</h2>
+      <h2>
+      <a id="regression" class="anchor" href="#regression" aria-hidden="true"><span class="octicon octicon-link"></span></a>Regression</h2>
 
-<p><center><img src="images/notrainhistogram.png" width="450" height="350" alt="Entries when Not Raining">
-<img src="images/rainhistogram.png" width="450" height="350" alt="Entries when Raining"></center></p>
+        <p>I used OLS using statsmodels for my regression model.</p>
 
-<p>Both samples have the majority of data points where entries into the subway are betwee 0 to 1650 entries. Both samples show a left-skew, meaning there are fewer and fewer data points where the number of entries increase.</p>
+        <p>The table below outlines the features I used, whether or not I dummy coded them (because they were a categorical variable), and their coefficient (if not dummy coded) in the model.</p>
 
-<p>At first glance, it looks like there are more riders when it is not raining; however, this would be an incorrect conclusion because we actually have lots more data points when it is not raining.</p>
+        <p><center><img src="images/regressiontable.png" width="475" height="175" alt="Features Used in OLS Analysis"></center></p>
 
-<p>For example, in the 0-1650 bin, there are approximately 22,000 data points when it is not raining and approximately 6,000 data points when it is raining.</p>
+        <p>I started with hour and unit, because I figured that the busiest times in the subway would be during commute hours and that certain subway stations would just be busier overall 
+        compared to others. My R<sup>2</sup> value was 0.458836. I then decided to add a constant, and it slightly improved my R<sup>2</sup> value to 0.458883. Then I added weather condition (conds)
+        because I presumed people ride the subway more when weather conditions are poor, day of the week (day_week) because there are probably more riders during Mon-Fri, and finally temperature (tempi)
+        because more people probably ride when temperatures are colder.</p>
 
-<p><center><img src="images/hourlyhistogram.png" width="450" height="325" alt="Entries by Hour"></center></p>
+        <p>The R<sup>2</sup> is a statistic measure of how well the regression line approximates the real data points. The value can range from 0 to 1, with 1 meaning the line perfectly fits the data.
+        My final model’s R<sup>2</sup> value was 0.487902, which means it is accounting for 48.7% of the data’s variance, and probably pretty reasonable for this dataset.</p>
 
-<p>The graph above visualizes ridership by time of day. The dataset only had values at the military hours of 0, 4, 8, 12, 16, and 20 so my plot is restricted to those time points.</p>
+        <p>By looking at a plot of the residuals, we see that the residuals are pretty normally distributed, meaning that the model predicted values higher and lower than actual with equal probability.</p>
 
-<p>I took a sum of all the entries at each turnstile unit for each hour, and then divided by the number of turnstile units. This way, I was able to get average ridership across all of the stations at a given hour.</p>
-
-<p>You’ll notice that the subway is the busiest at hour 20 (8 PM), probably when most people are commuting home. The next busiest time is hour 12 (12 PM), when a lot of people are awake and presumably trying to get somewhere.</p>
-At hour 4 (4 AM), ridership is the lowest.</p>
+        <p><center><img src="images/residualplot.png" width="400" height="300" alt="Plot of the Residuals"></center></p>
 
 
-<h2>
-<a id="conclusion" class="anchor" href="#conclusion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conclusion</h2>
+      <h2>
+      <a id="visualization" class="anchor" href="#visualization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Visualization</h2>
 
-<p>From this analysis, I can conclude that more people ride the NYC subway when it is raining versus when it is not. The dataset contains 42,649 rows of data containing information about the number of entries into a given turnstile 
-unit and information about the weather. There are 9,585 rows (or 22%) of data at which it was raining. This means that a majority of the data collected is when it is not raining. However, by looking at the mean of entries when it 
-is raining (2,028) versus when it is not raining (1,845), we see that there are a greater number of entries (on average) when it is raining.</p>
+        <p><center><img src="images/notrainhistogram.png" width="450" height="350" alt="Entries when Not Raining">
+        <img src="images/rainhistogram.png" width="450" height="350" alt="Entries when Raining"></center></p>
 
-<p>I ran a Mann-Whitney U Test to test if the number of entries when it is raining compared to not raining are significantly different. This test resulted in a p-value of &lt;0.001, meaning that the samples are significantly
-different. Again, by comparing the means, we are able to determine that there are more riders when it is raining versus when it is not.</p>
+        <p>Both samples have the majority of data points where entries into the subway are betwee 0 to 1650 entries. Both samples show a left-skew, meaning there are fewer and fewer data points where the number of entries increase.</p>
 
-<p>I also included the categorical variable of “conds” for various types of weather conditions in my Ordinary Least Squares Analysis. I figured this variable would be better than just the “rain” variable, since it distinguished
-between different types of rainy weather (e.g. “Light Drizzle,” “Light Rain”, “Rain”, “Heavy Rain”). Since, it was a categorical variable, I recoded it into a dummy variable. When I remove “conds” from the regression analysis, my
-R<sup>2</sup> decreases from 0.488763 to 0.484536. Although the model is better with “conds,” it appears that other variables better account for variability in the data.</p>
+        <p>At first glance, it looks like there are more riders when it is not raining; however, this would be an incorrect conclusion because we actually have lots more data points when it is not raining.</p>
+
+        <p>For example, in the 0-1650 bin, there are approximately 22,000 data points when it is not raining and approximately 6,000 data points when it is raining.</p>
+
+        <p><center><img src="images/hourlyhistogram.png" width="450" height="325" alt="Entries by Hour"></center></p>
+
+        <p>The graph above visualizes ridership by time of day. The dataset only had values at the military hours of 0, 4, 8, 12, 16, and 20 so my plot is restricted to those time points.</p>
+
+        <p>I took a sum of all the entries at each turnstile unit for each hour, and then divided by the number of turnstile units. This way, I was able to get average ridership across all of the stations at a given hour.</p>
+
+        <p>You’ll notice that the subway is the busiest at hour 20 (8 PM), probably when most people are commuting home. The next busiest time is hour 12 (12 PM), when a lot of people are awake and presumably trying to get somewhere.</p>
+        At hour 4 (4 AM), ridership is the lowest.</p>
+
+
+      <h2>
+      <a id="conclusion" class="anchor" href="#conclusion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conclusion</h2>
+
+        <p>From this analysis, I can conclude that more people ride the NYC subway when it is raining versus when it is not. The dataset contains 42,649 rows of data containing information about the number of entries into a given turnstile 
+        unit and information about the weather. There are 9,585 rows (or 22%) of data at which it was raining. This means that a majority of the data collected is when it is not raining. However, by looking at the mean of entries when it 
+        is raining (2,028) versus when it is not raining (1,845), we see that there are a greater number of entries (on average) when it is raining.</p>
+
+        <p>I ran a Mann-Whitney U Test to test if the number of entries when it is raining compared to not raining are significantly different. This test resulted in a p-value of &lt;0.001, meaning that the samples are significantly
+        different. Again, by comparing the means, we are able to determine that there are more riders when it is raining versus when it is not.</p>
+
+        <p>I also included the categorical variable of “conds” for various types of weather conditions in my Ordinary Least Squares Analysis. I figured this variable would be better than just the “rain” variable, since it distinguished
+        between different types of rainy weather (e.g. “Light Drizzle,” “Light Rain”, “Rain”, “Heavy Rain”). Since, it was a categorical variable, I recoded it into a dummy variable. When I remove “conds” from the regression analysis, my
+        R<sup>2</sup> decreases from 0.488763 to 0.484536. Although the model is better with “conds,” it appears that other variables better account for variability in the data.</p>
 
 
 <h2>
