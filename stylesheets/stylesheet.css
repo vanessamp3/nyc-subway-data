@@ -442,7 +442,7 @@ NAVIGATION
 }
 .nav li {
   font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
-  font-size: 24px;
+  font-size: 16px;
   line-height: 40px;
   height: 40px;
   border-bottom: 1px solid #888;
@@ -471,7 +471,7 @@ NAVIGATION
     border-bottom: none;
     height: 50px;
     line-height: 50px;
-    font-size: 24px;
+    font-size: 16px;
   }
  
   /* Option 1 - Display Inline */
