@@ -441,8 +441,8 @@ NAVIGATION
   margin: 0;
 }
 .nav li {
-  font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
-  font-size: 1em;
+  font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
+  font-size: 24px;
   line-height: 40px;
   height: 40px;
   border-bottom: 1px solid #888;
@@ -471,7 +471,7 @@ NAVIGATION
     border-bottom: none;
     height: 50px;
     line-height: 50px;
-    font-size: 1.4em;
+    font-size: 24px;
   }
  
   /* Option 1 - Display Inline */
