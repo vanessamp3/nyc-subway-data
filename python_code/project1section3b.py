@@ -16,12 +16,12 @@ def make_plot(data, title, mycolor, filename):
     
     plt.figure(figsize=(7,5))
     
-    plt.plot(data['hour'], data['avg'], 'go-')
+    plt.bar(data['hour'], data['avg'], width=3, align="center")
     
     plt.ylabel('Average Number of Entries')
     
     plt.xlabel('Hour of the Day (Military)')
-    plt.xticks(range(0,21))
+    plt.xticks([0, 4, 8, 12, 16, 20])
     plt.title(title)
     
     plt.gcf().subplots_adjust(bottom=0.15)
