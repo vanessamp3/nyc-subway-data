@@ -57,8 +57,11 @@
       <a id="statistical-test" class="anchor" href="#statistical-test" aria-hidden="true"><span class="octicon octicon-link"></span></a>Statistical Test</h2>
 
         <p>To compare whether there is a statistical difference in the number of entries into the NYC subway when it is raining and when it is not raining, we can use the Mann-Whitney U Test.
-        This test is non-parametric and does not assume we have normally-distributed data. By running a test of normality (scipy.stats.mstats.normal), I found that the data is not
-        normally-distributed, so this test would be more appropriate than Welch’s t-test.</p>
+        This test is non-parametric and does not assume we have normally-distributed data. By looking at the distribution of entry data in the histogram below, we can see that the data is
+        highly skewed to the left. In addition, I ran a test of normality (scipy.stats.mstats.normal), which returned a p-value of 0, meaning we can reject the null hypothesis of the test which that there is 0% chance that the data is normally
+        distributed.</p>
+        
+        <p><center><img src="images/entry_distribution.png" width="450" height="350" alt="Histogram of the Distribution of Entries into the Subway"></center></p>
 
         <p>We should use a two-tailed test, because we would like to consider the possibility that there could be more or less entries when it is raining compared to not raining.</p>
 
@@ -115,6 +118,11 @@
 
         <p>You’ll notice that the subway is the busiest at hour 20 (8 PM), probably when most people are commuting home. The next busiest time is hour 12 (12 PM), when a lot of people are awake and presumably trying to get somewhere.</p>
         At hour 4 (4 AM), ridership is the lowest.</p>
+        
+        <p>I wanted to utilize some of the location data available and created the scatter plot below to reflect the average number of entries at each turnstile unit location during the weekdays at hour 20. I was curious to see the
+        locations of turnstiles that were the busiest during the busiest hour of the day (during the week). The size of the point reflects the number of entries, while latitude and longitude are plotted on the axes.</p>
+        
+        <p><center><img src="images/entry_locations_wkday.png"></center></p>
 
         <p><a href="http://vanessamp3.github.io/nyc-subway-data/#">Go To Top</a></p>
 
